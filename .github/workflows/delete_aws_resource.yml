@@ -1,4 +1,4 @@
-name: Terraform Destroy + Apply
+name: Terraform Destroy
 
 on:
   push:
