@@ -30,6 +30,21 @@ This repository contains Terraform configurations that provision an AWS-based pi
 
 Outputs will display names and ARNs for the created resources.
 
-## License
+## API
 
-This project is released under the MIT License.
+A small FastAPI application is provided in `api/api_app.py` for querying the
+DynamoDB table. The service exposes two endpoints:
+
+1. `GET /records` – Fetch records for a given `site_id` and a time range using
+   `start` and `end` query parameters.
+2. `GET /anomalies` – Retrieve all records for a `site_id` that have the
+   `anomaly` flag set to `true`.
+
+The application expects the `TABLE_NAME` environment variable to be set and can
+be run locally with `uvicorn api.api_app:app`.
+
+## Visualization
+
+The script `visualize.py` uses `matplotlib` to plot net energy readings for a
+specified site within a time range. It also relies on the `TABLE_NAME`
+environment variable and fetches data directly from DynamoDB.
