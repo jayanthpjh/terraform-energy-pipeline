@@ -17,3 +17,7 @@ output "eventbridge_rule" {
 output "s3_trigger_status" {
   value = "S3 -> Lambda trigger set up"
 }
+
+output "sns_topic_arn" {
+  value = aws_sns_topic.anomaly_alert.arn
+}

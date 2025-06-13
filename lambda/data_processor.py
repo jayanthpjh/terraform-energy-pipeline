@@ -5,6 +5,8 @@ from decimal import Decimal
 
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table(os.environ['TABLE_NAME'])
+sns = boto3.client("sns")
+SNS_TOPIC_ARN = os.environ.get("SNS_TOPIC_ARN")
 
 def convert_floats(obj):
     if isinstance(obj, list):

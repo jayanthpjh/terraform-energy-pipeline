@@ -34,3 +34,18 @@ resource "aws_iam_role_policy" "lambda_dynamodb_access" {
     ]
   })
 }
+resource "aws_iam_role_policy" "lambda_sns_publish" {
+  name = "lambda-sns-policy-${random_pet.suffix.id}"
+  role = aws_iam_role.lambda_exec.name
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect: "Allow",
+        Action: "sns:Publish",
+        Resource: aws_sns_topic.anomaly_alert.arn
+      }
+    ]
+  })
+}

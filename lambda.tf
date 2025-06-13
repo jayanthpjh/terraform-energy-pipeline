@@ -24,6 +24,7 @@ resource "aws_lambda_function" "data_processor" {
   environment {
     variables = {
       TABLE_NAME = aws_dynamodb_table.energy_data.name
+	  SNS_TOPIC_ARN = aws_sns_topic.anomaly_alert.arn
     }
   }
 }
